@@ -1,0 +1,4 @@
+.agents
+*.zip
+.astro
+dist

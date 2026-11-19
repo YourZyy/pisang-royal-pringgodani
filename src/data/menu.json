@@ -1,0 +1,87 @@
+{
+  "toko": {
+    "nama": "Pisang Royal Pringgodani",
+    "whatsapp": "6287700025038",
+    "whatsappTampil": "+62 877-0002-5038",
+    "shopeeUrl": "https://shopee.co.id/universal-link/now-food/shop/20437367?deep_and_deferred=1&shareChannel=copy_link",
+    "alamat": "",
+    "jamBuka": "",
+    "areaAntar": "",
+    "googleMapsUrl": ""
+  },
+  "aturan": {
+    "hargaMix": 20000,
+    "maksRasaPerPorsi": 2,
+    "maksToppingPerPorsi": 2,
+    "maksJumlah": 99
+  },
+  "menu": [
+    {
+      "id": "coklat",
+      "nama": "Pisang Kembung Coklat",
+      "rasa": "Coklat",
+      "harga": 20000,
+      "foto": "/images/menu/coklat.webp",
+      "alt": "Pisang kembung rasa coklat",
+      "deskripsi": "Pisang kembung hangat berbalut glaze coklat pekat yang lumer.",
+      "warna": "#5B3721",
+      "tersedia": true,
+      "favorit": true
+    },
+    {
+      "id": "stroberi",
+      "nama": "Pisang Kembung Stroberi",
+      "rasa": "Stroberi",
+      "harga": 20000,
+      "foto": "/images/menu/stroberi.webp",
+      "alt": "Pisang kembung rasa stroberi",
+      "deskripsi": "Pisang kembung renyah dengan siraman glaze stroberi manis segar.",
+      "warna": "#C86D8A",
+      "tersedia": true,
+      "favorit": false
+    },
+    {
+      "id": "matcha",
+      "nama": "Pisang Kembung Matcha",
+      "rasa": "Matcha",
+      "harga": 20000,
+      "foto": "/images/menu/matcha.webp",
+      "alt": "Pisang kembung rasa matcha",
+      "deskripsi": "Glaze matcha hijau creamy dengan wangi teh hijau yang pas.",
+      "warna": "#7A9455",
+      "tersedia": true,
+      "favorit": false
+    },
+    {
+      "id": "tiramisu",
+      "nama": "Pisang Kembung Tiramisu",
+      "rasa": "Tiramisu",
+      "harga": 20000,
+      "foto": "/images/menu/tiramisu.webp",
+      "alt": "Pisang kembung rasa tiramisu",
+      "deskripsi": "Pisang kembung dengan krim tiramisu lembut dan aroma kopi halus.",
+      "warna": "#B39370",
+      "tersedia": true,
+      "favorit": false
+    },
+    {
+      "id": "ori",
+      "nama": "Pisang Kembung ORI",
+      "rasa": "ORI",
+      "harga": 17000,
+      "foto": "/images/menu/ori.webp",
+      "alt": "Pisang kembung rasa original",
+      "deskripsi": "Pisang kembung polos keemasan yang renyah di luar, lembut di dalam.",
+      "warna": "#D99326",
+      "tersedia": true,
+      "favorit": false
+    }
+  ],
+  "topping": [
+    { "nama": "Oreo", "keterangan": "Remah biskuit renyah" },
+    { "nama": "Keju", "keterangan": "Parutan keju gurih" },
+    { "nama": "Choco chips", "keterangan": "Butiran coklat manis" },
+    { "nama": "Meises", "keterangan": "Taburan coklat klasik" },
+    { "nama": "Sprinkle", "keterangan": "Taburan warna ceria" }
+  ]
+}

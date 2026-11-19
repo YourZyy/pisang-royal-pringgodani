@@ -1,0 +1,86 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { ArrowRight } from "lucide-react";
+
+const points = [
+  {
+    title: "Rasa bebas di-mix",
+    text: "Gabungkan dua rasa favorit dalam satu kotak, harga tetap Rp20.000 per porsi.",
+  },
+  {
+    title: "Topping tanpa biaya tambah",
+    text: "Oreo, Keju, Choco chips, Meises, atau Sprinkle. Semuanya sudah termasuk dalam harga menu.",
+  },
+  {
+    title: "Format pesanan jelas",
+    text: "Varian, topping, dan total rupiah tersusun rapi di WhatsApp, jadi pesanan minim salah catat.",
+  },
+];
+---
+
+<Layout
+  title="Tentang Kami - Pisang Royal Pringgodani"
+  description="Mengenal Pisang Royal Pringgodani: pisang kembung renyah dengan 5 rasa pilihan yang bebas di-mix dan sudah termasuk topping."
+>
+  <section class="pt-8 pb-16 lg:pt-14 lg:pb-24">
+    <div class="wrap">
+      <h1 class="rise text-[clamp(44px,7.4vw,104px)] max-w-[16ch]">
+        Hangat, renyah, rasanya kamu yang pilih.
+      </h1>
+
+      <div class="mt-10 lg:mt-14 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+        <div class="lg:col-span-5 flex flex-col items-start gap-5">
+          <p class="rise text-[18px] lg:text-[20px] leading-[1.55] text-ink-2" style="--d:2">
+            Pisang Royal Pringgodani menyajikan lima varian pisang kembung: Coklat, Stroberi, Matcha, Tiramisu, dan ORI. Kamu tidak perlu terpaku pada satu rasa, karena dalam satu porsi boleh mencampur sampai dua rasa dengan harga tetap Rp20.000.
+          </p>
+          <p class="rise text-[18px] lg:text-[20px] leading-[1.55] text-ink-2" style="--d:3">
+            Pesanan bisa langsung dikirim rapi ke WhatsApp toko, atau lewat Shopee kalau kamu lebih nyaman di aplikasi.
+          </p>
+          <a href="/menu" class="rise btn-base btn-primary mt-2" style="--d:4">
+            <span>Lihat Menu</span>
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          </a>
+        </div>
+
+        <div class="lg:col-span-7 grid grid-cols-12 gap-4 items-end">
+          <div class="unmask photo col-span-7 aspect-[3/4]">
+            <img
+              src="/images/menu/coklat.webp"
+              alt="Pisang kembung coklat meleleh"
+              width={736}
+              height={552}
+            />
+          </div>
+          <div class="unmask photo col-span-5 aspect-[4/5]" style="animation-delay:260ms">
+            <img
+              src="/images/menu/ori.webp"
+              alt="Pisang kembung original keemasan"
+              width={736}
+              height={552}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-y border-t border-ink/20">
+    <div class="wrap">
+      <h2 class="text-[clamp(32px,4.6vw,60px)] mb-10 lg:mb-14" data-reveal>Yang kami pegang</h2>
+      <ul class="list-none p-0 m-0">
+        {
+          points.map((p, i) => (
+            <li
+              class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-10 items-baseline border-t border-ink/20 py-7"
+              data-reveal
+              style={`--d:${i}`}
+            >
+              <h3 class="md:col-span-5 text-[clamp(24px,2.8vw,36px)]">{p.title}</h3>
+              <p class="md:col-span-7 text-[18px] text-ink-2 leading-[1.5] max-w-[44ch]">{p.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Layout>

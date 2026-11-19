@@ -1,0 +1,101 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroShowcase from "../components/HeroShowcase";
+import FlavorMarquee from "../components/FlavorMarquee.astro";
+import MenuCatalogSection from "../components/MenuCatalogSection";
+import HomeMixSection from "../components/HomeMixSection";
+import { buildDirectWhatsAppUrl, storeInfo } from "../lib/order";
+import { ShopeeBagIcon, WhatsAppIcon } from "../components/Icons";
+
+const steps = [
+  {
+    verb: "Pilih",
+    text: "Ketuk Pesan pada rasa favoritmu. Satu rasa, atau mix dua rasa dengan topping gratis.",
+  },
+  {
+    verb: "Atur",
+    text: "Tambah beberapa porsi sekaligus. Total rupiah terhitung otomatis di keranjang.",
+  },
+  {
+    verb: "Kirim",
+    text: "Isi nama dan pilih ambil atau antar. Pesanan sudah terformat rapi, tinggal kirim ke WhatsApp.",
+  },
+];
+---
+
+<Layout
+  title="Pisang Royal Pringgodani - Pisang Kembung Aneka Rasa"
+  description="Pisang kembung renyah rasa coklat, stroberi, matcha, tiramisu, dan ORI. Rasa bisa di-mix, topping lengkap. Pesan lewat WhatsApp atau Shopee."
+  includeSchema={true}
+>
+  <HeroShowcase client:load />
+
+  <FlavorMarquee />
+
+  <MenuCatalogSection client:load source="beranda" showSeeAllLink={true} />
+
+  <HomeMixSection client:load />
+
+  <!-- Cara pesan: judul menempel di kiri, tiga langkah bergulir di kanan -->
+  <section class="section-y">
+    <div class="wrap grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+      <div class="lg:col-span-4">
+        <div class="lg:sticky lg:top-28" data-reveal>
+          <h2 class="text-[clamp(38px,5vw,72px)]">Cara pesan</h2>
+          <p class="mt-5 text-[18px] leading-[1.55] text-ink-2 max-w-[26ch]">
+            Tanpa akun. Tiga langkah, selesai di WhatsApp.
+          </p>
+        </div>
+      </div>
+
+      <ol class="lg:col-span-8 list-none p-0 m-0">
+        {
+          steps.map((step, i) => (
+            <li class="border-t-2 border-ink py-10 lg:py-16 first:pt-8" data-reveal style={`--d:${i}`}>
+              <span class="block font-display font-extrabold text-[clamp(72px,12vw,176px)] leading-[0.9] tracking-[-0.05em]">
+                {step.verb}
+              </span>
+              <p class="mt-5 text-[18px] lg:text-[20px] leading-[1.5] text-ink-2 max-w-[36ch]">
+                {step.text}
+              </p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Penutup: satu ajakan, dua jalur -->
+  <section class="on-banana bg-banana text-ink section-y">
+    <div class="wrap">
+      <h2 class="text-[clamp(52px,11vw,168px)] leading-[0.9]" data-reveal>Lapar?<br />Pesan sekarang.</h2>
+
+      <div class="mt-10 lg:mt-14 flex flex-col lg:flex-row lg:items-end justify-between gap-8" data-reveal style="--d:1">
+        <p class="text-[18px] lg:text-[20px] leading-[1.5] max-w-[34ch]">
+          Chat WhatsApp <strong class="font-extrabold">{storeInfo.whatsappTampil}</strong>{storeInfo.jamBuka ? `, buka ${storeInfo.jamBuka}` : ""}. Bisa juga lewat toko kami di Shopee.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+          <a
+            href={buildDirectWhatsAppUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-base btn-wa"
+          >
+            <WhatsAppIcon className="w-5 h-5" />
+            <span>Pesan via WhatsApp</span>
+          </a>
+          <a
+            href={storeInfo.shopeeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-base btn-shopee !border-shopee-ink"
+          >
+            <ShopeeBagIcon className="w-5 h-5" />
+            <span>Pesan via Shopee</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,16 @@
+---
+import Layout from "../layouts/Layout.astro";
+import OrderSentClient from "../components/OrderSentClient";
+---
+
+<Layout
+  title="Pesanan Terkirim ke WhatsApp - Pisang Royal Pringgodani"
+  description="Tekan Kirim di aplikasi WhatsApp agar pesanan pisang kembungmu langsung diproses oleh toko."
+  hideFloatingAndSticky={true}
+>
+  <section class="py-10 sm:py-14">
+    <div class="wrap">
+      <OrderSentClient client:load />
+    </div>
+  </section>
+</Layout>

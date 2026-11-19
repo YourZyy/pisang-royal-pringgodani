@@ -1,0 +1,40 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import MenuCatalogSection from "../../components/MenuCatalogSection";
+import { orderRules, toppingList } from "../../lib/order";
+---
+
+<Layout
+  title="Menu Pisang Kembung - Pisang Royal Pringgodani"
+  description="Daftar lengkap 5 rasa Pisang Royal Pringgodani: Coklat, Stroberi, Matcha, Tiramisu, dan ORI. Boleh mix hingga 2 rasa Rp20.000 termasuk topping."
+  includeSchema={true}
+>
+  <MenuCatalogSection
+    client:load
+    source="menu"
+    headingTag="h1"
+    title="Daftar menu"
+    intro={`Mix maksimal ${orderRules.maksRasaPerPorsi} rasa tetap Rp20.000. ORI Rp17.000. Semua harga sudah termasuk hingga ${orderRules.maksToppingPerPorsi} topping.`}
+    showMixStrip={true}
+  />
+
+  <section class="section-y !pt-0">
+    <div class="wrap">
+      <div class="border-t border-ink/20 pt-12 lg:pt-16" data-reveal>
+        <h2 class="text-[clamp(30px,4vw,52px)]">Topping gratis</h2>
+        <p class="mt-4 text-[18px] text-ink-2 max-w-[44ch]">
+          Pilih maksimal {orderRules.maksToppingPerPorsi} per porsi, atau pesan polos tanpa topping.
+        </p>
+      </div>
+
+      <ul class="mt-10 grid grid-cols-2 md:grid-cols-5 gap-x-8 gap-y-8 list-none p-0 m-0" data-reveal style="--d:1">
+        {toppingList.map((top) => (
+          <li class="border-t-2 border-ink pt-4">
+            <h3 class="text-[22px]">{top.nama}</h3>
+            <p class="mt-1.5 text-[15px] text-ink-2 leading-snug">{top.keterangan}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Layout>

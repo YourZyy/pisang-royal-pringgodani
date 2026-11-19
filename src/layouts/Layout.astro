@@ -1,0 +1,113 @@
+---
+import "@fontsource-variable/archivo/wdth.css";
+import "@fontsource-variable/plus-jakarta-sans/wght.css";
+import "../styles/global.css";
+import { storeInfo, menuList } from "../lib/order";
+import SiteHeader from "../components/SiteHeader";
+import SiteFooter from "../components/SiteFooter.astro";
+import GlobalOverlays from "../components/GlobalOverlays";
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  hideFloatingAndSticky?: boolean;
+  includeSchema?: boolean;
+}
+
+const {
+  title,
+  description,
+  ogImage = "/images/og-share.jpg",
+  hideFloatingAndSticky = false,
+  includeSchema = false,
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const canonicalUrl = Astro.site ? new URL(currentPath, Astro.site).toString() : undefined;
+const ogImageUrl = Astro.site ? new URL(ogImage, Astro.site).toString() : ogImage;
+
+const structuredData = includeSchema
+  ? {
+      "@context": "https://schema.org",
+      "@type": "FoodEstablishment",
+      name: storeInfo.nama,
+      description,
+      servesCuisine: "Indonesian Dessert / Pisang Kembung",
+      telephone: storeInfo.whatsappTampil,
+      priceRange: "Rp17.000 - Rp20.000",
+      sameAs: [storeInfo.shopeeUrl],
+      hasMenu: {
+        "@type": "Menu",
+        hasMenuSection: {
+          "@type": "MenuSection",
+          name: "Menu Pisang Kembung",
+          hasMenuItem: menuList.map((m) => ({
+            "@type": "MenuItem",
+            name: m.nama,
+            description: m.deskripsi,
+            offers: {
+              "@type": "Offer",
+              price: m.harga,
+              priceCurrency: "IDR",
+              availability: m.tersedia
+                ? "https://schema.org/InStock"
+                : "https://schema.org/OutOfStock",
+            },
+          })),
+        },
+      },
+    }
+  : null;
+---
+
+<!doctype html>
+<html lang="id" data-type="product">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {hideFloatingAndSticky && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content="#F4F2EA" />
+    <meta name="page-type" content="product" />
+    <meta name="site-kind" content="other" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+    <!-- Open Graph / WhatsApp & Social Sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content={storeInfo.nama} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <script is:inline>document.documentElement.classList.add("js");</script>
+
+    {structuredData && (
+      <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    )}
+  </head>
+  <body class="pb-20 md:pb-0">
+    <a class="skip-link" href="#main-content">Lewati ke isi utama</a>
+
+    <SiteHeader client:load currentPath={currentPath} />
+
+    <main id="main-content" class="min-h-[60dvh]">
+      <slot />
+    </main>
+
+    <SiteFooter />
+
+    <GlobalOverlays client:load hideFloatingAndSticky={hideFloatingAndSticky} />
+
+    <script>
+      import "../scripts/smooth.ts";
+    </script>
+  </body>
+</html>

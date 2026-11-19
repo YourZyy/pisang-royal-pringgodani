@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CheckoutPageClient from "../components/CheckoutPageClient";
+---
+
+<Layout
+  title="Checkout Pesanan - Pisang Royal Pringgodani"
+  description="Lengkapi nama, metode ambil atau antar, lalu kirim pesanan terformat ke WhatsApp Pisang Royal Pringgodani."
+  hideFloatingAndSticky={true}
+>
+  <section class="py-10 sm:py-12">
+    <div class="wrap">
+      <div class="mb-10 lg:mb-14">
+        <h1 class="text-[clamp(40px,6vw,80px)]">Checkout</h1>
+        <p class="mt-4 text-[18px] text-ink-2 max-w-[44ch]">
+          Isi data singkat di bawah. Pesananmu disusun otomatis jadi pesan WhatsApp ke toko.
+        </p>
+      </div>
+      <CheckoutPageClient client:load />
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { buildDirectWhatsAppUrl, storeInfo } from "../lib/order";
+---
+
+<Layout
+  title="Kebijakan Privasi - Pisang Royal Pringgodani"
+  description="Penjelasan singkat bagaimana website Pisang Royal Pringgodani menjaga data keranjang dan pesanan pelanggan."
+>
+  <section class="pt-8 pb-16 lg:pt-14 lg:pb-24">
+    <div class="wrap">
+      <h1 class="rise text-[clamp(40px,6.4vw,88px)]">Kebijakan privasi</h1>
+      <p class="rise mt-6 text-[18px] text-ink-2 max-w-[48ch]" style="--d:2">
+        Website {storeInfo.nama} dibuat sesederhana mungkin: lihat menu, lalu pesan lewat WhatsApp atau Shopee.
+      </p>
+
+      <div class="mt-14 max-w-[820px]">
+        <div class="border-t border-ink/20 py-8 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8">
+          <h2 class="md:col-span-4 text-[22px]">Tanpa akun</h2>
+          <p class="md:col-span-8 text-[17px] text-ink-2 leading-relaxed">
+            Tidak ada pendaftaran atau login. Isi keranjang dan salinan ringkasan pesanan terakhirmu hanya disimpan di peramban perangkatmu (<code>localStorage</code>) agar tidak hilang saat halaman dimuat ulang.
+          </p>
+        </div>
+
+        <div class="border-t border-ink/20 py-8 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8">
+          <h2 class="md:col-span-4 text-[22px]">Data pesanan</h2>
+          <p class="md:col-span-8 text-[17px] text-ink-2 leading-relaxed">
+            Nama, alamat antar (jika memilih Antar), waktu, dan catatan tidak disimpan di server kami. Data itu hanya disusun menjadi teks pesan dan dikirim ke WhatsApp toko saat kamu menekan Kirim ke WhatsApp.
+          </p>
+        </div>
+
+        <div class="border-t border-ink/20 py-8 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8">
+          <h2 class="md:col-span-4 text-[22px]">Pertanyaan</h2>
+          <p class="md:col-span-8 text-[17px] text-ink-2 leading-relaxed">
+            Ada pertanyaan soal pesanan atau data yang kamu kirim lewat chat? Hubungi WhatsApp
+            <a
+              href={buildDirectWhatsAppUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-bold text-ink link-draw"
+            >
+              {storeInfo.whatsappTampil}
+            </a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

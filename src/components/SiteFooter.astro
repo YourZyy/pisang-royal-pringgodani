@@ -1,0 +1,57 @@
+---
+import { storeInfo, buildDirectWhatsAppUrl } from "../lib/order";
+import { BrandMark } from "./Icons";
+---
+
+<footer class="on-forest bg-forest text-bone">
+  <div class="wrap pt-16 pb-10 grid grid-cols-1 md:grid-cols-12 gap-12">
+    <div class="md:col-span-6 flex flex-col gap-5">
+      <a href="/" class="inline-flex items-center gap-3 text-bone no-underline self-start">
+        <BrandMark className="w-10 h-10 shrink-0" />
+        <span class="font-display font-extrabold text-[22px] tracking-[-0.03em] leading-none">
+          {storeInfo.nama}
+        </span>
+      </a>
+      <p class="text-[17px] leading-[1.55] text-bone/80 max-w-[36ch]">
+        Pisang kembung renyah, lima rasa yang bisa di-mix, topping sudah termasuk.
+      </p>
+    </div>
+
+    <div class="md:col-span-3">
+      <h3 class="font-sans font-bold text-[13px] tracking-[0.04em] uppercase text-bone/60 mb-4">Halaman</h3>
+      <ul class="flex flex-col gap-1 list-none p-0 m-0 text-[16px]">
+        <li><a href="/" class="inline-flex min-h-[40px] items-center text-bone no-underline link-draw">Beranda</a></li>
+        <li><a href="/menu" class="inline-flex min-h-[40px] items-center text-bone no-underline link-draw">Menu</a></li>
+        <li><a href="/keranjang" class="inline-flex min-h-[40px] items-center text-bone no-underline link-draw">Keranjang</a></li>
+        <li><a href="/tentang" class="inline-flex min-h-[40px] items-center text-bone no-underline link-draw">Tentang</a></li>
+        <li><a href="/kontak" class="inline-flex min-h-[40px] items-center text-bone no-underline link-draw">Kontak</a></li>
+      </ul>
+    </div>
+
+    <div class="md:col-span-3">
+      <h3 class="font-sans font-bold text-[13px] tracking-[0.04em] uppercase text-bone/60 mb-4">Pesan</h3>
+      <ul class="flex flex-col gap-1 list-none p-0 m-0 text-[16px]">
+        <li>
+          <a href={buildDirectWhatsAppUrl()} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[40px] items-center font-bold text-banana no-underline link-draw">
+            {storeInfo.whatsappTampil}
+          </a>
+        </li>
+        <li>
+          <a href={storeInfo.shopeeUrl} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[40px] items-center text-bone no-underline link-draw">
+            Toko di Shopee
+          </a>
+        </li>
+        {storeInfo.alamat && <li class="py-1.5 text-bone/80">{storeInfo.alamat}</li>}
+        {storeInfo.jamBuka && <li class="py-1.5 text-bone/80">Buka {storeInfo.jamBuka}</li>}
+        {storeInfo.areaAntar && <li class="py-1.5 text-bone/80">Antar: {storeInfo.areaAntar}</li>}
+        <li><a href="/privasi" class="inline-flex min-h-[40px] items-center text-bone no-underline link-draw">Kebijakan Privasi</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-bone/15">
+    <div class="wrap py-6 text-[14px] text-bone/70">
+      <span>&copy; 2026 {storeInfo.nama}</span>
+    </div>
+  </div>
+</footer>

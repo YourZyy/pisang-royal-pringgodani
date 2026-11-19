@@ -1,0 +1,17 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CartPageClient from "../components/CartPageClient";
+---
+
+<Layout
+  title="Keranjang Belanja - Pisang Royal Pringgodani"
+  description="Tinjau pilihan rasa, mix, topping, dan jumlah porsi Pisang Royal Pringgodani sebelum dikirim ke WhatsApp."
+  hideFloatingAndSticky={true}
+>
+  <section class="py-10 sm:py-12">
+    <div class="wrap">
+      <h1 class="text-[clamp(40px,6vw,80px)] mb-10 lg:mb-14">Keranjang</h1>
+      <CartPageClient client:load />
+    </div>
+  </section>
+</Layout>

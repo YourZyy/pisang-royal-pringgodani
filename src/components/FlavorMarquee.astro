@@ -1,0 +1,28 @@
+---
+import { menuList } from "../lib/order";
+
+// Dua salinan identik agar loop translateX(-50%) tak terlihat putus.
+const copies = [0, 1];
+---
+
+<section class="on-banana bg-banana text-ink overflow-hidden" aria-label="Lima pilihan rasa">
+  <div class="marquee flex w-max">
+    {
+      copies.map((copy) => (
+        <ul class="flex shrink-0 items-center list-none m-0 p-0" aria-hidden={copy === 1 ? "true" : undefined}>
+          {menuList.map((m) => (
+            <li class="flex items-center gap-5 pr-5 sm:gap-7 sm:pr-7">
+              <span class="font-display font-extrabold text-[clamp(40px,6vw,88px)] tracking-[-0.04em] leading-none py-5 sm:py-7">
+                {m.rasa}
+              </span>
+              <span
+                class="w-4 h-4 sm:w-6 sm:h-6 rounded-full shrink-0 border-2 border-ink"
+                style={`background:${m.warna}`}
+              />
+            </li>
+          ))}
+        </ul>
+      ))
+    }
+  </div>
+</section>

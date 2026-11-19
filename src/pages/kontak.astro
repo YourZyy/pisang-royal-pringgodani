@@ -1,0 +1,85 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { buildDirectWhatsAppUrl, storeInfo } from "../lib/order";
+import { ShopeeBagIcon, WhatsAppIcon } from "../components/Icons";
+import { ExternalLink, MapPin } from "lucide-react";
+
+const mapsUrl =
+  storeInfo.googleMapsUrl ||
+  (storeInfo.alamat
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(storeInfo.alamat)}`
+    : "");
+
+const details = [
+  storeInfo.alamat && { label: "Alamat", value: storeInfo.alamat },
+  storeInfo.jamBuka && { label: "Jam buka", value: storeInfo.jamBuka },
+  storeInfo.areaAntar && { label: "Area antar", value: storeInfo.areaAntar },
+].filter(Boolean) as { label: string; value: string }[];
+---
+
+<Layout
+  title="Kontak Toko - Pisang Royal Pringgodani"
+  description="Hubungi Pisang Royal Pringgodani lewat WhatsApp +62 877-0002-5038 atau kunjungi halaman toko resmi di Shopee."
+>
+  <section class="pt-8 pb-16 lg:pt-14 lg:pb-24">
+    <div class="wrap">
+      <h1 class="rise text-[clamp(44px,7.4vw,104px)]">Kontak</h1>
+      <p class="rise mt-6 text-[18px] lg:text-[20px] text-ink-2 max-w-[40ch]" style="--d:2">
+        Untuk pesanan acara, kantor, atau cek ketersediaan hari ini, chat langsung saja.
+      </p>
+
+      <div class="mt-14 lg:mt-20 grid grid-cols-1 md:grid-cols-2 gap-x-14 gap-y-14">
+        <div class="border-t-2 border-ink pt-6 flex flex-col gap-5 items-start" data-reveal>
+          <h2 class="text-[clamp(26px,3vw,38px)]">WhatsApp</h2>
+          <p class="text-[17px] text-ink-2 max-w-[38ch]">
+            Jalur utama untuk pesanan dari website, konfirmasi ongkos kirim, dan pesanan jumlah banyak.
+          </p>
+          <a
+            href={buildDirectWhatsAppUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-display font-extrabold text-[clamp(28px,3.4vw,44px)] tracking-[-0.03em] tabular-nums text-ink no-underline link-draw"
+          >
+            {storeInfo.whatsappTampil}
+          </a>
+          <a href={buildDirectWhatsAppUrl()} target="_blank" rel="noopener noreferrer" class="btn-base btn-wa">
+            <WhatsAppIcon className="w-5 h-5" />
+            <span>Pesan via WhatsApp</span>
+          </a>
+        </div>
+
+        <div class="border-t-2 border-ink pt-6 flex flex-col gap-5 items-start" data-reveal style="--d:1">
+          <h2 class="text-[clamp(26px,3vw,38px)]">Shopee</h2>
+          <p class="text-[17px] text-ink-2 max-w-[38ch]">
+            Pilih ini kalau kamu ingin bayar non-tunai atau melacak pengiriman di dalam aplikasi Shopee.
+          </p>
+          <a href={storeInfo.shopeeUrl} target="_blank" rel="noopener noreferrer" class="btn-base btn-shopee mt-auto">
+            <ShopeeBagIcon className="w-5 h-5" />
+            <span>Pesan via Shopee</span>
+            <ExternalLink className="w-4 h-4" aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+
+      {details.length > 0 && (
+        <div class="mt-16 border-t-2 border-ink pt-6" data-reveal>
+          <h2 class="text-[clamp(26px,3vw,38px)] mb-6">Lokasi dan jam</h2>
+          <dl class="grid grid-cols-1 md:grid-cols-3 gap-6 m-0">
+            {details.map((d) => (
+              <div>
+                <dt class="text-[14px] font-bold text-ink-2">{d.label}</dt>
+                <dd class="m-0 mt-1 text-[18px]">{d.value}</dd>
+              </div>
+            ))}
+          </dl>
+          {mapsUrl && (
+            <a href={mapsUrl} target="_blank" rel="noopener noreferrer" class="btn-base btn-secondary mt-8">
+              <MapPin className="w-4 h-4" aria-hidden="true" />
+              <span>Buka di Google Maps</span>
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>
